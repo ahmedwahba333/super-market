@@ -1,0 +1,20 @@
+<div class="card h-100">
+    <figure>
+        <img [src]="product.image" class="card-img-top" height="450px" alt="...">
+    </figure>
+    <div class="card-body d-flex justify-content-between flex-column align-items-start">
+        <h5 class="card-title">Name: {{product.name}}</h5>
+        <div *ngIf="product.count <= 0;then thenBlock ; else elseBlock;"></div>
+        <ng-template #thenBlock><p class="text-danger fw-bold"> out of stock</p></ng-template>
+        <ng-template #elseBlock><p class="text-success fw-bold"> in stock</p></ng-template>
+        <p class="card-text">Description: {{product.description}}</p>
+        <p>Reviews: {{product.reviews}}</p>
+        <p>Rate: {{product.rate}}</p>
+        <p>Price: {{product.price | currency:'EGP'}}</p>
+        <a (click)="redirectToAddToCart()" class="btn btn-primary">Go somewhere</a>
+    </div>
+
+    <div class="card-footer">
+        <small class="text-muted">release date: {{product.createdAt | date:"short"}}</small>
+    </div>
+</div>
